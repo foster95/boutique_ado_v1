@@ -126,7 +126,8 @@
 
   {% if messages %}
   <div class="message-container">
-    {% with message.level as level %}
+    {% for message in messages %}
+        {% with message.level as level %}
               {% if level == 40 %}
                   {% include 'includes/toasts/toast_error.html' %}
               {% elif level == 30 %}
