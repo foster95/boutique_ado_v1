@@ -3,9 +3,11 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.contrib import messages
 from checkout.models import Order
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def profile(request):
     """A view to return the profile page."""
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -32,6 +34,7 @@ def profile(request):
 
     return render(request, template, context)
 
+@login_required
 def order_history(request, order_number):
     """A view to return the order history page."""
     order = get_object_or_404(Order, order_number=order_number)
